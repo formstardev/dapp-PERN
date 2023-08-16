@@ -1,0 +1,104 @@
+.navstart{
+
+  margin-left:-550px;
+}
+
+.navend{
+  margin-left:35%;
+  transition: margin-left ease 1s;
+}
+
+.navendfull{
+  margin-left:100%;
+  transition: margin-left ease 1s;
+}
+
+.popstatestart{
+  margin-left:100%;
+}
+
+.popstateend{
+  margin-left:35%;
+  transition: margin-left ease 1s;
+}
+
+.navbutton{
+  padding-top:30px;
+  padding-right:30px;
+  padding-left:30px;
+  text-decoration: none;
+  font-size:18px;
+  display:inline-block;
+  font-weight: bold;
+  color:brown;
+}
+
+.leftsec{
+
+  color:lightblue;
+  
+}
+
+.home{
+
+  margin-left:30px;
+}
+
+.homeh1{
+
+  margin-top:-10px;
+}
+
+.homep{
+
+  
+  text-align:justify; 
+}
+
+.homediv{
+
+  max-width: 550px;
+  max-height:150px; 
+  
+  overflow:hidden;
+  
+}
+
+.h1{
+
+  height:50px;
+
+  overflow:hidden;
+
+ 
+}
+/* Customize scrollbar width and height */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* Customize scrollbar background color */
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+/* Customize scrollbar thumb color */
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+}
+/* Hide scrollbar on screens smaller than `sm` */
+@media (max-width: 640px) {
+  ::-webkit-scrollbar {
+    @apply hidden;
+  }
+}
+/* ::-webkit-scrollbar {
+  display: none;
+} */
+
+/* Hide scrollbar for IE, Edge and Firefox */
+body {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
