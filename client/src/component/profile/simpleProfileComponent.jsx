@@ -1,10 +1,41 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom"
 import { FiMail, FiPlusCircle } from "react-icons/fi";
+import UserService from '../../services/user.service'
+import { toast } from "react-toastify";
+import { useUserContext } from "../../utility/context/useContext";
 
 const SimpleProfileComponent = () => {
     const isDarkMode = localStorage.getItem('isDarkMode') === "true" ? true : false;
+    const [usersData, setUserData] = useState({});
     const history = useHistory();
+    const {userData}  = useUserContext();
+    console.log('121223124124124',userData)
+
+//fetch the userdata 
+    useEffect(() => {
+        UserService.fetchData().then(
+            (response) => {
+                console.log("response",response.data);
+                setUserData(response.data[0]);                             
+            },
+            (error) => {
+                console.log('ssssssssdfdsfsdf',error)
+                const resMessage =
+                    (error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
+                    error.message ||
+                    error.toString();
+                    toast.error(resMessage,{
+                        position: toast.POSITION.TOP_CENTER,
+                        autoClose:4000,
+                    });               
+            }
+        )
+      }, []);
+      console.log('ddsfasdfsadfsad',userData)
+      
     return (
         <>
             <div className="sm:w-full flex flex-col items-center justify-center">
@@ -21,7 +52,7 @@ const SimpleProfileComponent = () => {
                             </figure>
                         </div>
                         <div className="ml-3">
-                            <p className={`${isDarkMode ? 'text-white' : 'text-blue-500'} font-bold sm:text-[24px] text-[20px]`}>Matthew Smith</p>
+                            <p className={`${isDarkMode ? 'text-white' : 'text-blue-500'} font-bold sm:text-[24px] text-[20px]`}>{usersData?.username}</p>
                             <p className="mt-1 text-[#8d969d] text-light sm:text-[14px] text-[12px]">Photographer</p>
                             <p className="text-[#8d969d] text-light sm:text-[18px] text-[14px]">@matt.smith</p>
                         </div>
@@ -29,15 +60,15 @@ const SimpleProfileComponent = () => {
                     <div className="flex flex-col flex-grow">
                         <div className="flex justify-between mx-7">
                             <div className="flex flex-col justify-center items-center">
-                                <p className={`${isDarkMode ? 'text-white' : 'text-blue-700'} md:text-[20px] text-[16px] font-medium`}>56</p>
+                                <p className={`${isDarkMode ? 'text-white' : 'text-blue-700'} md:text-[20px] text-[16px] font-medium`}>{usersData?.speaks}</p>
                                 <p className={`${isDarkMode ? 'text-white' : 'text-blue-700'} md:text-[12px] text-[10px] font-light`}>Speaks</p>
                             </div>
                             <div className="flex flex-col justify-center items-center">
-                                <p className={`${isDarkMode ? 'text-white' : 'text-blue-700'} md:text-[20px] text-[16px] font-medium`}>1,136</p>
+                                <p className={`${isDarkMode ? 'text-white' : 'text-blue-700'} md:text-[20px] text-[16px] font-medium`}>{usersData?.followers}</p>
                                 <p className={`${isDarkMode ? 'text-white' : 'text-blue-700'} md:text-[12px] text-[10px] font-light`}>Followers</p>
                             </div>
                             <div className="flex flex-col justify-center items-center">
-                                <p className={`${isDarkMode ? 'text-white' : 'text-blue-700'} md:text-[20px] text-[16px] font-medium`}>123</p>
+                                <p className={`${isDarkMode ? 'text-white' : 'text-blue-700'} md:text-[20px] text-[16px] font-medium`}>{usersData?.following}</p>
                                 <p className={`${isDarkMode ? 'text-white' : 'text-blue-700'} md:text-[12px] text-[10px] font-light`}>Following</p>
                             </div>
                         </div>

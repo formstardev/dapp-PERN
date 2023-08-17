@@ -5,6 +5,7 @@ import { Fragment } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import { FaBars } from 'react-icons/fa';
 import { Switch } from "@material-tailwind/react";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 //import usecontext
 import { useUserContext } from "../../utility/context/useContext";
@@ -38,6 +39,13 @@ const Header = ({isDarkMode, toggleDarkMode}) => {
     // };
       console.log("ssssssssssssssss", userData)
 
+    //Clear localstorage
+    const clearLocalStorage = () => {
+        localStorage.clear();
+        // You might want to perform additional actions after clearing local storage
+        // For example, you can trigger a page reload to reflect the changes.
+      };
+
 
 
     return (
@@ -69,7 +77,7 @@ const Header = ({isDarkMode, toggleDarkMode}) => {
                                     <img className="mt-16 rounded-full w-20 h-20 border border-white border-4 shadow-lg" src="/images/human/man-4.png" alt=""></img>
                                 </figure>
                                 <div className="flex items-center justify-center mt-2">
-                                    <p className="font-bold text-white text-[24px]">{userData.username}</p>
+                                    <p className="font-bold text-white text-[24px]">{userData?.username}</p>
                                 </div>
                                 <div className="flex items-center justify-center mt-1">
                                     <p className="font-medium text-blue-500 text-[14px]">@matt.smith</p>
@@ -173,7 +181,7 @@ const Header = ({isDarkMode, toggleDarkMode}) => {
                                 alt=""
                                 />
                                 <span className="hidden ml-3 text-sm font-medium lg:block">
-                                    <p className="text-white">{userData.username}</p>                                   
+                                    <p className="text-white">{userData?.username}</p>                                   
                                     <p className="text-sm text-[#3F85E3]">@matt.smith</p>
                                 </span>
                                 
@@ -199,41 +207,42 @@ const Header = ({isDarkMode, toggleDarkMode}) => {
                             >
                                 <Menu.Item>
                                     {({ active }) => (
-                                        <a
-                                        href="/"
-                                        className={classNames(
+                                        <Link
+                                            to='/profile'
+                                            className={classNames(
                                             active ? 'bg-gray-100' : '',
                                             'block px-4 py-2 text-sm text-gray-700'
-                                        )}
+                                            )}
                                         >
-                                        Your Profile
-                                        </a>
+                                            Your Profile
+                                        </Link>
                                     )}
                                 </Menu.Item>
                                 <Menu.Item>
                                     {({ active }) => (
-                                        <a
-                                        href="/"
-                                        className={classNames(
+                                        <Link
+                                            to='/setting'
+                                            className={classNames(
                                             active ? 'bg-gray-100' : '',
                                             'block px-4 py-2 text-sm text-gray-700'
-                                        )}
+                                            )}
                                         >
-                                        Settings
-                                        </a>
+                                            Settings
+                                        </Link>
                                     )}
                                 </Menu.Item>
                                 <Menu.Item>
                                     {({ active }) => (
-                                        <a
-                                        href="/"
-                                        className={classNames(
+                                        <Link
+                                            to='/onboarding'
+                                            className={classNames(
                                             active ? 'bg-gray-100' : '',
                                             'block px-4 py-2 text-sm text-gray-700'
-                                        )}
+                                            )}
+                                            onClick={clearLocalStorage}
                                         >
-                                        Logout
-                                        </a>
+                                            Logout
+                                        </Link>
                                     )}
                                 </Menu.Item>
                             </Menu.Items>

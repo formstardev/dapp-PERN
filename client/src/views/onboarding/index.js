@@ -15,7 +15,7 @@ const Onboarding = () => {
     function nextSlide() {
         setCurrentSlide(currentSlide+1);
         if (currentSlide+2 > slides.length){
-            history.push('/home')
+            history.push('/login')
         }
         
     }
