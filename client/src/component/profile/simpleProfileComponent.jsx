@@ -9,14 +9,11 @@ const SimpleProfileComponent = () => {
     const isDarkMode = localStorage.getItem('isDarkMode') === "true" ? true : false;
     const [usersData, setUserData] = useState({});
     const history = useHistory();
-    const {userData}  = useUserContext();
-    console.log('121223124124124',userData)
 
 //fetch the userdata 
     useEffect(() => {
         UserService.fetchData().then(
             (response) => {
-                console.log("response",response.data);
                 setUserData(response.data[0]);                             
             },
             (error) => {
@@ -34,7 +31,6 @@ const SimpleProfileComponent = () => {
             }
         )
       }, []);
-      console.log('ddsfasdfsadfsad',userData)
       
     return (
         <>

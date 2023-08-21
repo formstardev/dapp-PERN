@@ -46,7 +46,7 @@ exports.signup = async (req, res) => {
     );
 
     // Send verification email using Brevo's API key
-    const brevoApiKey = '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';
+    const brevoApiKey = '';
     const brevoEndpoint = 'https://api.brevo.com/email/send';
 
     const emailData = {
